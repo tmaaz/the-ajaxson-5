@@ -12,3 +12,18 @@
 
 
     /* Core Components */
+body
+    {
+        font-family: "Open Sans", Verdana, Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: #333;
+        background-color: #DEDEDE;
+        width: 750px;
+        margin: 0 auto;
+        padding: 12px;
+    }
+
+h1, h2, h3, h4, h5, h6
+    {
+        font-family: "Raleway", Verdana, Arial, Helvetica, sans-serif;
+    }

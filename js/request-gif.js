@@ -14,28 +14,27 @@ function fetchAndDisplayGif(event)
         event.preventDefault();
 
         // get the user's input text from the DOM
-        var searchQuery = ""; // TODO should be e.g. "dance"
+        var searchQuery = "jackson 5 " + $('#getgif').val();
 
         // API request params
-        var params =
-            {
-                api_key: "dc6zaTOxFJmzC",
-                tag : "" // TODO should be e.g. "jackson 5 dance"
-            };
+        var urlGiphy = "http://api.giphy.com/v1/gifs/random";
+                urlGiphy += '?' + $.param(
+                    {
+                        'tag': searchQuery,
+                        'limit': 1,
+                        'rating': "pg-13",
+                        api_key: "dc6zaTOxFJmzC"
+                    }
+                );
 
         // API request for random GIF
         $.ajax(
             {
-                url: "https://api.giphy.com/v1/gifs/random",
-                data: params,
+                url: urlGiphy,
                 success: function(response)
                     {
-                        // TEST - ensure that we're getting feedback from the server
-                        console.log("we received a response!", response);
-
-                        // TODO
-                        // 1. set the source attribute of our image to the image_url of the GIF
-                        // 2. hide the feedback message and display the image
+                        $('#gif').attr('src', response.data.image_url);
+                        setGifLoadedStatus(true);
                     },
                 error: function()
                     {
