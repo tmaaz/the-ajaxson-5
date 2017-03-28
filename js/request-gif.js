@@ -34,17 +34,19 @@ function fetchAndDisplayGif(event)
                 success: function(response)
                     {
                         $('#gif').attr('src', response.data.image_url);
+                        $("#loader").attr("hidden", true);
                         setGifLoadedStatus(true);
                     },
                 error: function()
                     {
                         $("#feedback").text("Sorry, could not load GIF. Try again!");
+                        $("#loader").attr("hidden", true);
                         setGifLoadedStatus(false);
                     }
             });
 
-        // TODO -- give the user a "Loading..." message while they wait
-
+        $("#gif").attr("src", "");
+        $("#loader").attr("hidden", false);
     }
 
 // toggles UI element visibility, based on whether a GIF is currently loaded
