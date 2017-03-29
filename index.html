@@ -3,9 +3,9 @@
     <head>
         <title>The AJAXson 5! | STLCC 101</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/styles.css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Open+Sans+Condensed:300" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Raleway:700|Raleway:300" rel="stylesheet" />
         <script src="https://use.fontawesome.com/f5407f7b61.js"></script>
@@ -20,19 +20,33 @@
                 <h1><i class="fa fa-hand-paper-o fa-lg fa-rotate-45"></i>&nbsp;The AJAXson 5</h1>
                 <h6>by Trevor Masinelli - STLCC 101 | JavaScript</h6>
             </header>
-            <hr width="90%" />
+            <hr />
             <section id="input">
                 <form id="form-gif-request" />
-                    <span>What kind of Jackson 5 related gif do you want?</span>
-                    <input name="tag" id="getgif" type="text"/>
-                    <input type="submit" class="btn btn-primary" value="GIF Me!" />
+                    <span>What kind of Jackson 5 related GIF do you want?</span>
+                    <input name="tag" id="getgif" type="text" />
+                    <button type="submit" id="gifgetter" class="btn btn-primary">Continue...</button>
+                </form>
+            </section>
+            <section id="captcha">
+                <form id="form-captcha" />
+                    <span>Not a robot? Then answer this riddle!<br />
+                        If the band members all had twins,<br />
+                        they'd be called the Jackson&nbsp;
+                    </span>
+                    <input name="answer" id="capanswer" type="text" />
+                    <button type="submit" id="capbtn" class="btn btn-primary">
+                        <i class="fa fa fa-hand-o-right"></i>
+                        &nbsp;&nbsp;GIF me!
+                    </button>
                 </form>
             </section>
             <section id="output">
-                <img id="gif" class="img-rounded" src="" hidden="true"/>
-                <img id="loader" src="img/load.svg" hidden="true"/>
-                <p id="feedback" hidden="true`"></p>
+                <img id="gif" class="img-rounded" src="" hidden="true" />
+                <img id="loader" src="img/load.svg" hidden="true" />
+                <p id="feedback" hidden="true" /></p>
             </section>
+            <img id="credit" src="img/PoweredBy_200px-White_HorizText.png" />
         </main>
     </body>
 </html>

@@ -2,8 +2,37 @@
 
 $(document).ready(function()
     {
-        // register fetchAndDisplayGif() the "callback" triggered by the form's submission event
-        $("#form-gif-request").submit(fetchAndDisplayGif);
+        $(function()
+        {
+            // display the captcha box, and pass the callback to that button
+            $("#gifgetter").click(function()
+                {
+                    $("#captcha").slideDown();
+                    $("#gifgetter").attr('disabled', 'disabled');
+                    return false;
+                });
+
+            // check captcha, then register fetchAndDisplayGif() the "callback" triggered by the form's submission event
+            $("#capbtn").click(function()
+                {
+                    capCheck = $('#capanswer').val().toUpperCase();
+
+                    if (capCheck == "TEN" || capCheck == "10")
+                        {
+                            $("#feedback").text("");
+                            $('#gif').attr('src', '');
+                            $("#form-captcha").submit(fetchAndDisplayGif);
+                        }
+                    else
+                        {
+                            $("#feedback").text("I knew it! You're a robot!!");
+                            $('#gif').attr('src', 'img/goodday.jpg');
+                            $("#gif").removeAttr("hidden");
+                            $("#feedback").removeAttr("hidden");
+                            event.preventDefault();
+                        }
+                });
+        });
     });
 
 // ping Giphy.com for a random GIF using the search term + "jackson 5", and update the DOM to display the result
