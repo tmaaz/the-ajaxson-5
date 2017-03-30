@@ -1,46 +1,60 @@
 
-
 $(document).ready(function()
     {
         $(function()
         {
-            // display the captcha box, and pass the callback to that button
-            $("#gifgetter").click(function()
+            // button that displays captcha box when clicked (then button dissappears)
+            $("#gifgetter").one('click', function()
                 {
                     $("#captcha").slideDown();
-                    $("#gifgetter").attr('disabled', 'disabled');
+                    $("#gifgetter").attr('hidden', 'true');
                     return false;
-                });
-
-            // check captcha, then register fetchAndDisplayGif() the "callback" triggered by the form's submission event
-            $("#capbtn").click(function()
-                {
-                    capCheck = $('#capanswer').val().toUpperCase();
-
-                    if (capCheck == "TEN" || capCheck == "10")
-                        {
-                            $("#feedback").text("");
-                            $('#gif').attr('src', '');
-                            $("#form-captcha").submit(fetchAndDisplayGif);
-                        }
-                    else
-                        {
-                            $("#feedback").text("I knew it! You're a robot!!");
-                            $('#gif').attr('src', 'img/goodday.jpg');
-                            $("#gif").removeAttr("hidden");
-                            $("#feedback").removeAttr("hidden");
-                            event.preventDefault();
-                        }
                 });
         });
     });
 
-// ping Giphy.com for a random GIF using the search term + "jackson 5", and update the DOM to display the result
-function fetchAndDisplayGif(event)
-    {
 
-        // prevent sending a request and refreshing the page
-        event.preventDefault();
+/* WORK-AROUND -- .on('click') binds a new event handler each time it is used,
+* and CAN NOT be over-ridden, which means that each time the button is
+* clicked and a GIF is requested via the API, it is actually pulling
+* 1, 2, 3, 4, 5, 6, etc. gifs with each successive button-click,
+* adding unnecessary calls on the API server as well as making this
+* project lag considerably with each additional click, as it continues
+* to request more and more elements from the API server. To acoid this,
+* the click-listening has been pushed off to the HTML, with an 'onlick'
+* within the HTML, which fires up the following function when clicked
+*/
+
+// function to actually check the captcha input, and either deny access or send API call
+function noneShallPass()
+    {
+        var capCheck = '';
+        capCheck = $('#capanswer').val().toUpperCase();
+        if (capCheck == "TEN" || capCheck == "10")
+            {
+                // captcha is correct, call the function to make the AJAX API call
+                fetchAndDisplayGif();
+            }
+        else  // deny access because the captcha was incorrect
+
+            {
+                // make the necessary content containers visible
+                $("#feedback").removeAttr("hidden");
+                $("#gif").removeAttr("hidden");
+
+                // inject content into the containers
+                $("#feedback").text("I knew it! You're a robot!!");
+                $('#gif').attr('src', 'img/goodday.jpg');
+            }
+    }
+
+
+// function to ping Giphy.com for a random GIF using the search term + "jackson 5", and update the DOM to display the result
+function fetchAndDisplayGif()
+    {
+        // hide the content containers until we know we have something to put in them
+        $("#feedback").attr("hidden", true);
+        $('#gif').attr('hidden', true);
 
         // get the user's input text from the DOM
         var searchQuery = "jackson 5 " + $('#getgif').val();
@@ -74,7 +88,7 @@ function fetchAndDisplayGif(event)
                     }
             });
 
-        $("#gif").attr("src", "");
+        $("#gif").attr("hidden", true);
         $("#loader").attr("hidden", false);
     }
 
