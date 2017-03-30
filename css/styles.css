@@ -6,14 +6,14 @@
     }
 
 
-    /* Core Components */
+/* Core Components */
 body
     {
         font-family: "Open Sans", Verdana, Arial, Helvetica, sans-serif;
         font-size: 13px;
         color: #333;
         background-color: #DEDEDE;
-        width: 300px;
+        width: 95%;
         margin: 0 auto;
     }
 
@@ -47,14 +47,16 @@ hr
     }
 
 
-    /* Sectional Components */
+/* Sectional Components */
 #contentwrap
     {
-        margin-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+        margin: 10px auto;
         background: #BBBBBB;
         border-radius: 5px;
         border: 1px solid #000000;
-        box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.25)
+        box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.25);
     }
 
 #wrap
@@ -79,14 +81,20 @@ hr
 
 #output
     {
-        padding: 7px;
+        margin: 7px 0px 3px 0px;
         width: 100%;
         height: auto;
         text-align: center;
     }
 
 
-    /* Specific Components */
+/* Specific Components */
+
+#topper
+    {
+        font-size: 14px;
+    }
+
 #loader
     {
         width: 25%;
@@ -100,7 +108,7 @@ hr
 
 #form-gif-request input
     {
-        margin: 10px 3px;
+        margin: 10px 3px 2px 0px;
         padding-bottom: 5px;
     }
 
@@ -111,9 +119,9 @@ hr
 
 #credit
     {
-        width: 50%;
-        height: auto;
-        margin-top: 10px;
+        width: 100px;
+        height: 11px;
+        margin: 10px -15px 0px 0px;
         float: right;
     }
 
@@ -135,15 +143,17 @@ input.btn
 
 img
     {
-        width: 95%;
+        width: auto;
         height: auto;
-        margin-bottom: 7px;
+        margin: 2px 0px 7px 0px;
     }
 
 .img-rounded
     {
         border-radius: 5px;
         border: 1px solid #000000;
+        max-width: 100%;
+        height: auto;
     }
 
 .fa-rotate-45 {
@@ -152,3 +162,30 @@ img
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
     }
+
+
+/* Responsive Components */
+
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: @screen-xs-max)
+	{
+        #topper
+        {
+            padding: 0px 10px;
+        }
+	}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max)
+	{
+	}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max)
+	{
+	}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min)
+	{
+	}
